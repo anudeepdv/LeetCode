@@ -4,7 +4,7 @@ class Solution:
         res=0
         for i in range(32):
             res = res<<1
-            res=res + n%2
+            res=res ^ n%2
 
             n=n>>1
 
