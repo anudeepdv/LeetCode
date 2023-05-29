@@ -22,9 +22,9 @@ class TimeMap:
 
             while l<=r:
                 m=(l+r)//2
-                print(timestamp,valuesList[m][1])
+                # print(timestamp,valuesList[m][1])
                 if valuesList[m][1]<=timestamp:
-                    print(valuesList[m][0])
+                    # print(valuesList[m][0])
                     res=valuesList[m][0]
                     l=m+1
                 else:
