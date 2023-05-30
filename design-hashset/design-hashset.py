@@ -1,30 +1,41 @@
+class Node:
+    def __init__(self,value):
+        self.val=value
+        self.next=None
+
+
 class MyHashSet:
 
-    def __init__(self):
-        self.keys=[]
-        # self.values=[]
-        
+    def __init__(self):  
+        self.keyStore= [Node(0) for i in range(10**4)]
 
     def add(self, key: int) -> None:
-        if key not in self.keys:
-            self.keys.append(key)
-        
+        hashed = key%len(self.keyStore)
+        cur = self.keyStore[hashed]  
+        while cur.next:
+            if cur.next.val ==key:
+                return
+            cur=cur.next      
+        cur.next = Node(key)
 
     def remove(self, key: int) -> None:
-        if key in  self.keys:
-            i = self.keys.index(key)
-            print(self.keys,i)
-            self.keys.pop(i)
-        
-
+        hashed = key%len(self.keyStore)
+        cur = self.keyStore[hashed]
+        while cur.next:
+            if cur.next.val ==key:
+                cur.next=cur.next.next
+                return
+            cur=cur.next
+  
     def contains(self, key: int) -> bool:
-        if key in self.keys:
-            return True
-
+        hashed = key%len(self.keyStore)
+        cur = self.keyStore[hashed]
+        while cur.next:
+            if cur.next.val ==key:
+                return True
+            cur=cur.next
         return False
         
-
-
 # Your MyHashSet object will be instantiated and called as such:
 # obj = MyHashSet()
 # obj.add(key)
