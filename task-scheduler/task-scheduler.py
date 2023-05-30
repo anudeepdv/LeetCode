@@ -13,7 +13,7 @@ class Solution:
         time =0
 
         while h or q:
-            time=time+1
+           
             if h:
                 t  = 1 + heapq.heappop(h)
                 if t:
@@ -22,6 +22,7 @@ class Solution:
             if q and q[0][1]==time:
                 ele = q.popleft()
                 heapq.heappush(h,ele[0])
+            time=time+1
 
         return time
                 
