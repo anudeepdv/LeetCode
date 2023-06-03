@@ -18,16 +18,16 @@ class Solution:
 
             while q:
                 # print(visited)
-                for i in range(len(q)):
-                    a,b = q.popleft()
+    
+                a,b = q.popleft()
 
-                    for x,y in directions:
-                       
-                        nx,ny = a+x, b+y
-                        # print(nx,ny)
-                        if nx in range(rows ) and ny in range(columns) and grid[nx][ny]=="1" and (nx,ny )not in visited:
-                            q.append((nx,ny))
-                            visited.add((nx,ny))
+                for x,y in directions:
+                    
+                    nx,ny = a+x, b+y
+                    # print(nx,ny)
+                    if nx in range(rows ) and ny in range(columns) and grid[nx][ny]=="1" and (nx,ny )not in visited:
+                        q.append((nx,ny))
+                        visited.add((nx,ny))
 
 
             return
