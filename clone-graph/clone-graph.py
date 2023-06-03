@@ -10,12 +10,13 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
 
         if node is None:
-            return
+            return 
+
         hashMap={}
         q=collections.deque([node])
 
         while(q):
-            print(q)
+            # print(q)
             curNode = q.popleft()
             # print(curNode.val)
             if curNode not in hashMap:
@@ -25,7 +26,7 @@ class Solution:
                 if nei not in hashMap:
                     CopNei=Node(nei.val,[])
                     hashMap[nei]=CopNei
-                    print(nei.val)
+                    # print(nei.val)
                     q.append(nei)
                     hashMap[curNode].neighbors.append(CopNei)
                 else:
