@@ -19,8 +19,8 @@ class Solution:
                     visited.add((r,c))
                     initialRotten+=1
 
-        if initialRotten==0 and fresh==0:
-            return 0
+        # if initialRotten==0 and fresh==0:
+        #     return 0
         directions = [[1,0],[0,1],[-1,0],[0,-1]]
 
         cal=0
