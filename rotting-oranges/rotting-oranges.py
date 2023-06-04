@@ -25,7 +25,7 @@ class Solution:
 
         cal=0
         time=0
-        while q:
+        while q and cal!=fresh:
 
 
             for i in range(len(q)):
@@ -42,7 +42,7 @@ class Solution:
             time=time+1
 
         if cal==fresh:
-            return time-1
+            return time
         return -1
 
         
