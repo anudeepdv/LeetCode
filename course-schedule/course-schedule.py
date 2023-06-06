@@ -4,7 +4,7 @@ class Solution:
         adjList=collections.defaultdict(list)
 
         for s,d in prerequisites:
-            adjList[s].append(d)
+            adjList[d].append(s)
 
         visitedMap={}
         for i in range(numCourses):
