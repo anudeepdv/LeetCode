@@ -20,21 +20,21 @@ class Solution:
 
             if  rr<=m:
                 rsum = (m*(m+1)//2) - (m-rr)*(m-rr+1)//2
-               
             else:
-                 rsum = (m*(m+1)//2) +(rr-m)*1
+                rsum = (m*(m+1)//2) +(rr-m)*1
 
+          
 
             if  ll<=m:
                 lsum = (m*(m+1)//2) - (m-ll)*(m-ll+1)//2
             else:
+               
                 lsum = (m*(m+1)//2) +(ll-m)*1
-                
 
             curSum+=lsum+rsum
             print(rsum,lsum,mid,curSum,maxSum)
             if curSum<=maxSum:
-                res=max(res,mid)
+                res=mid
                 lo=mid+1
             else:
                 high=mid-1
