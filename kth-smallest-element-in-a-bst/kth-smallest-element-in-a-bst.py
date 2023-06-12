@@ -7,16 +7,19 @@
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
 
-        s=[]
+        s=collections.deque()
 
-        def inOrder(r):
-            if r is None:
-                return
-            inOrder(r.left)
-            s.append(r.val)
-            inOrder(r.right)
-        inOrder(root)
-        print(s)
-        return s[k-1]
+        cur=root
+        while True:
+            while cur is not None:
+                s.append(cur)
+                cur=cur.left
+            
+            pop = s.pop()
+            k -= 1
+            if k==0:
+                return pop.val
 
-
+            cur=pop.right
+        
+        return 0
