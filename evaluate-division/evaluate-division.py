@@ -9,7 +9,7 @@ class Solution:
         print(adjacency_list)
 
         def bfs(source, target):
-            if target not in adjacency_list:
+            if target not in adjacency_list or source not in adjacency_list:
                 return -1
 
             q=collections.deque([(source,1)])
