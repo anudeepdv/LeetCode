@@ -17,8 +17,6 @@ class Solution:
             right = dfs(node.right)
 
             balance = (left[0]and right[0] and abs(left[1]-right[1])<=1)
-            # if balance ==False:
-            #     return False
 
             return [balance, 1+max(left[1],right[1])]
 
