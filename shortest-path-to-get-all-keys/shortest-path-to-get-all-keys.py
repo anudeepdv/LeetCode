@@ -1,14 +1,3 @@
-'''
-w: minimum steps  --> BFS
-h: we have additional interesting conditions here 
-    we can go to A if we have key a
-    then we might need to store more information than just (x,y) in regular graph 
-    traversal problem
-    
-note that for each cell, we can travese more than once since in some cases we need 
-to grab the key and then return to a previous place and start searching again. so we should not add the position when we append the position to the queue
-'''
-
 import collections
 
 class Solution:
@@ -18,47 +7,60 @@ class Solution:
         #1 . find the start point
         #2. find how many key we need to collection
         cnt = 0
+        start=None
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == '@':
                     start = [r,c]
                 if grid[r][c] in 'abcdef':
                     cnt += 1
-        
-        
-        deque = collections.deque([(start[0], start[1], '')])
-        seen = set()
-        directions = [(0,1), (0,-1),(-1,0),(1,0)]
-        steps = 0
-        #print(cnt)
-        
-        while deque:
-            size = len(deque)
-            for _ in range(size):
-                x, y, key = deque.popleft()
-                if (x, y, key) in seen:
-                    continue
-                if len(key) == cnt:
-                    return steps
-                
-                seen.add((x, y, key))
 
-                for dx, dy in directions:
-                    nx = x+dx
-                    ny = y+dy
-                    if 0 <= nx < rows and 0 <= ny < cols and grid[nx][ny] !='#': # note that in the following code, we did not
-                                                                                 # add the position to seen when we append it to the queue
-                        cell = grid[nx][ny]
-                        if cell in 'ABCDEF' and cell.lower() in key:
-                            deque.append((nx, ny, key))
-                        elif cell in '.@':
-                            deque.append((nx, ny, key))
-                        elif cell in "abcdef":
-                            if cell not in key:
-                                deque.append((nx,ny, key+cell))
-                            else:
-                                deque.append((nx,ny, key))
-            
-            steps += 1
+        q= collections.deque()
+        visited=set()
+
+        q.append((start[0],start[1],''))
+
+        directions=[[-1,0],[0,1],[1,0],[0,-1]]
+        steps=0
+        while q:
+
+            for _ in range(len(q)):
+
+                r,c,keys=q.popleft()
+
+                if (r,c,keys) in visited:
+                    continue
+
+                if len(keys)==cnt:
+                    return steps
+
+                visited.add((r,c,keys))
+
+                for nx,ny in directions:
+                    x=r+nx
+                    y=c+ny
+                    if x in range(rows) and y in range(cols) and grid[x][y] !='#':
+                        if grid[x][y] in '.@':
+                            q.append((x,y,keys))
+                        if  grid[x][y] in "abcdef" and grid[x][y] not in keys:
+                            q.append((x,y,keys+grid[x][y]))
+                        if  grid[x][y] in "abcdef" and grid[x][y]  in keys:
+                            q.append((x,y,keys))
+                        if grid[x][y] in "ABCDEF" and grid[x][y].lower() in keys:
+                            q.append((x,y,keys))
+
+                        
+
+
+            steps = steps+1
+
 
         return -1
+
+
+
+
+            
+
+
+      
