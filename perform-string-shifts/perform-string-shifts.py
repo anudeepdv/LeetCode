@@ -12,7 +12,7 @@ class Solution:
                 r+=shift[i][1]
         print(r,l)
         if r-l>0:
-            for i in range((r-l)%n):
+            for i in range((r-l)):
                 print(m)
                 m.insert(0,m.pop())
         if l-r>0:
