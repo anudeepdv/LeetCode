@@ -1,60 +1,82 @@
 class Node:
-     def __init__(self, key, val):
-         self.key=key
-         self.val=val
-         self.prev=self.next=None
-
+    def __init__(self,key,val) -> None:
+        self.key=key
+        self.val=val
+        self.next=None
+        self.prev=None
 
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.hashmap = {}
-        self.c=capacity
-        self.left = Node(0,0)
-        self.right= Node(0,0)
-        self.left.next =self.right
-        self.left.prev=None
+        self.cap=capacity
+        self.left=Node(0,0)
+        self.right=Node(0,0)
 
-        self.right.prev =self.left
-        self.right.next=None
-        
-    def remove(self, node:Node):
-        l = node.prev
-        r=node.next
-        l.next = r
-        r.prev=l
-    
-        return node
+        self.left.next=self.right
+        self.right.prev=self.left
+        self.map={}
 
-    def addFromBegining(self, node:Node) -> None:
-        node.next=self.left.next
-        node.prev=self.left
-        self.left.next.prev=node
-        self.left.next=node
-   
-        
-        return
 
     def get(self, key: int) -> int:
-        if key in self.hashmap:
-            removedNode=self.remove(self.hashmap[key])
-            self.addFromBegining(removedNode)
-            return self.hashmap[key].val
-        return -1
+
+
+        if key not in self.map:
+            return -1
+        
+        node=self.map[key]
+        nodel=node.prev
+        noder=node.next
+        nodel.next=noder
+        noder.prev=nodel
+
+        nodel=self.right.prev
+        nodel.next=node
+        node.prev=nodel
+        node.next=self.right
+        self.right.prev=node
+
+        return node.val
+
         
 
     def put(self, key: int, value: int) -> None:
-        if key in self.hashmap:
-            removedNode=self.remove(self.hashmap[key])
-            del self.hashmap[removedNode.key]
+        
+        if key in self.map:
+            node = self.map[key]
+            nodel=node.prev
+            noder=node.next
+            nodel.next=noder
+            noder.prev=nodel
+            del self.map[key]
+            
+        elif len(self.map)==self.cap:     
 
-        if(self.c == len(self.hashmap)):
-            removedNode=self.remove(self.right.prev)
-            del self.hashmap[removedNode.key]
+            node=self.left.next
+            self.left.next=node.next
+            node.next.prev=self.left
+            keyr=node.key
+            del self.map[keyr]
+      
 
-        newNode = Node(key,value)
-        self.addFromBegining(newNode)
-        self.hashmap[newNode.key]=newNode
+
+
+        node = Node(key,value)
+        
+        node.next=self.right
+        node.prev=self.right.prev
+        self.right.prev.next=node
+        self.right.prev=node
+        self.map[key]=node
+        l=self.left
+        
+
+
+        
+        
+        
+
+
+
 
         
 
