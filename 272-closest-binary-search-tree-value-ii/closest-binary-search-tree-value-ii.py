@@ -8,7 +8,6 @@ class Solution:
     def closestKValues(self, root: Optional[TreeNode], target: float, k: int) -> List[int]:
 
         res=float('inf')
-        val=[]
         q=collections.deque()
         q.append(root)
 
@@ -18,11 +17,7 @@ class Solution:
                 pop = q.popleft()
                 print(pop.val,abs(pop.val-target),target,res)
                 h.append((abs(pop.val-target),pop.val))
-                if abs(pop.val-target)<res:
-                    res=abs(pop.val-target)
-                    val=pop.val
-                if abs(pop.val-target)==res:
-                    val=min(pop.val,val)
+             
 
                 if pop.left:
                     q.append(pop.left)
