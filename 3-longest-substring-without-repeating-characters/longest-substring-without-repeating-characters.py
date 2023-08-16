@@ -14,13 +14,12 @@ class Solution:
             
             else:
                 while s[r] in hashmap:
-                    print('hi',s[r])
-                    print(hashmap)
+                  
                     hashmap.remove(s[l])
                     l=l+1
                 hashmap.add(s[r])
                 maxy=max(maxy,r-l+1)
-                print('------')
+             
              
 
         return maxy
