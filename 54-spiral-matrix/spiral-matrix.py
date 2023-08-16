@@ -23,7 +23,7 @@ class Solution:
             if l!=r:
                 for i in range(b-1,t,-1):
                     res.append(matrix[i][l])
-            print(res)
+        
             t=t+1
             b=b-1
             l=l+1
