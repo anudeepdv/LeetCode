@@ -12,7 +12,6 @@ class Solution:
         while h or prev:
             if prev and not h:
                 return ""
-            print(h)
             i,j = heapq.heappop(h)
             res=res+j
             i=i+1
