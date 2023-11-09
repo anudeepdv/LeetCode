@@ -3,38 +3,38 @@ class Solution:
         """
         Do not return anything, modify rooms in-place instead.
         """
-        rows = len(rooms)
-        cols=len(rooms[0])
-       
+        vis=set()
+        m=len(rooms)
+        n=len(rooms[0])
+        res=[]
         q=collections.deque()
-        visited=set()
+        dirt=[[0,1],[1,0],[-1,0],[0,-1]]
+        r=0
+        
+        for i in range(m): 
+            for j in range(n):
+                if rooms[i][j]==0:
+                    q.append((i,j))
 
-        for r in range(rows):
-            for c in range(cols):
-
-                if rooms[r][c]==0:
-                    q.append((r,c))
-                    visited.add((r,c))
-
-
-        l=1
-
-        directions = [[1,0],[0,1],[-1,0],[0,-1]]
+        c=1
         while q:
 
-            for i in range(len(q)):
-                x,y=q.popleft()
+            for _ in range(len(q)):
 
-                for dx,dy in directions:
-                    nx,ny= x+dx,y+dy
+                x,y = q.popleft()
 
-                    if nx in range(rows) and ny in range(cols) and rooms[nx][ny] ==2147483647 and (nx,ny) not in visited:
+                for i,j in dirt:
+                    nx,ny=x+i,y+j
+                    
+                    if nx in range(m) and ny in range(n) and (nx,ny) not in vis and rooms[nx][ny]==2147483647:
                         q.append((nx,ny))
-                        visited.add((nx,ny))
-                        rooms[nx][ny]=l
+                        vis.add((nx,ny))
+                        rooms[nx][ny]=c
+
+            c+=1
+
+          
 
 
-            l=l+1
 
-            
 
