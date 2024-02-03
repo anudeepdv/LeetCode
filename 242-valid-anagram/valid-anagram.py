@@ -1,23 +1,15 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-
-        if len(s)!=len(t):
-            return False
-        count=collections.defaultdict(int)
-
+        
+        c=collections.defaultdict(int)
         for i in s:
-            count[i]+=1
+            c[i]+=1
         
         for i in t:
-            if i not in count:
-                return False
-            else:
-                count[i]-=1
-                if count[i]==0:
-                    del count[i]
+            c[i]-=1
+            if c[i]==0:
+                del c[i]
 
-        if len(count)==0:
+        if len(c)==0:
             return True
-
         return False
-       
