@@ -5,7 +5,7 @@ class Solution:
 
         for i,val in enumerate(nums):
             if target - val in s:
-                print(i,s[target - val])
+                
                 return [i,s[target - val]]
             s[val]=i
 
