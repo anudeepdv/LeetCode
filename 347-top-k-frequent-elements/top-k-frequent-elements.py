@@ -12,7 +12,7 @@ class Solution:
 
         res=[]
         for i in range(len(nums),-1,-1):
-            print(i)
+          
             for j in s[i]:
                 res.append(j)
                 if len(res)==k:
