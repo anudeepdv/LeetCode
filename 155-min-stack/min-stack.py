@@ -1,33 +1,28 @@
 class MinStack:
 
     def __init__(self):
-        self.s=[]
-        self.m=[]
+        self.minh=collections.deque()
+        self.h=collections.deque()
 
     def push(self, val: int) -> None:
-        if self.s:
-            m = min(self.m[-1],val)
-            self.s.append(val)
-            self.m.append(m)
+        if len(self.h)==0:
+            self.minh.append(val)
+            self.h.append(val)
+
         else:
-            self.s.append(val)
-            self.m.append(val)
-
-
-        
+            m = min(val,self.minh[-1]) 
+            self.minh.append(m)
+            self.h.append(val)
 
     def pop(self) -> None:
-        self.m.pop()
-        return self.s.pop()
-        
+        self.minh.pop()
+        self.h.pop()
 
     def top(self) -> int:
-        return self.s[-1]
-        
+        return self.h[-1]
 
     def getMin(self) -> int:
-        return self.m[-1]
-        
+        return self.minh[-1]
 
 
 # Your MinStack object will be instantiated and called as such:
