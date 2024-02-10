@@ -4,9 +4,9 @@ class Solution:
         s = sum(nums[:k])
         m=s
         for i in range(k,len(nums)):
-            print(s,nums[i-k],nums[i])
+            # print(s,nums[i-k],nums[i])
             s=s-nums[i-k]+nums[i]
-            print(s)
+            # print(s)
             m=max(m,s)
 
         return m/k
