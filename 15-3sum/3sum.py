@@ -6,11 +6,13 @@ class Solution:
         for i in range(len(nums)):
 
             initial = nums[i]
+            
             l= i+1
+            
+            r=len(nums)-1
+
             if i>=1 and nums[i]==nums[i-1]:
                 continue
-
-            r=len(nums)-1
 
             while l<r:
                 # print([initial,nums[i],nums[r]])
@@ -21,10 +23,16 @@ class Solution:
                 elif val<0:
                     l=l+1
                 else:
+                    
                     res.append([initial,nums[l],nums[r]])
-                    l=l+1
-                    while(nums[l]==nums[l-1] and l<r  ):
+                    while l+1<r-1 and nums[l]==nums[l+1] and nums[r]==nums[r-1]:
                         l=l+1
+                        r=r-1
+                    
+                    l=l+1
+                    r=r-1
+
+                    
 
         return res
             
