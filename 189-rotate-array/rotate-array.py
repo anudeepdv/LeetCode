@@ -7,5 +7,5 @@ class Solution:
         nums.reverse()
         print(nums)
         k=k%len(nums)
-        nums[:k]=reversed(nums[:k])
-        nums[k:]=reversed(nums[k:])
+        nums[:k] = reversed(nums[:k])
+        nums[k:] = reversed(nums[k:])
