@@ -4,7 +4,7 @@ class Solution:
         res=[]
 
         def dfs(cur,l):
-            print(l)
+           
             if len(l)==k:
                 res.append([j for j in l])
                 return
