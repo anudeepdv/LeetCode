@@ -13,7 +13,7 @@ class Solution:
         l= 0 
         r=len(self.prefix)-1
 
-        rand =  random.uniform(0, self.total)
+        rand =  random.random()*self.total
         while l<r:
 
             m = (l+r)//2
