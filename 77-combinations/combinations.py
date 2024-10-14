@@ -1,20 +1,18 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-
-
+        
         res=[]
 
-        def dfs(i,lis):
-            # print(lis,k)
-            if len(lis)==k:
-                print(lis,'BREAK')
-                res.append([l for l in lis])
+        def dfs(cur,l):
+            print(l)
+            if len(l)==k:
+                res.append([j for j in l])
                 return
-            
-            for j in range(i,n+1):
-                lis.append(j)
-                dfs(j+1,lis)
-                lis.pop()
+
+            for i in range(cur,n+1):
+                dfs(i+1,l+[i])
+                
+
 
         dfs(1,[])
         return res
