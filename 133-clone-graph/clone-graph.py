@@ -28,6 +28,7 @@ class Solution:
             for nei in node.neighbors:
                 if nei not in d:
                     d[nei]=Node(nei.val,[])
+        
                 d[node].neighbors.append(d[nei])
                 dfs(nei,d,vis)
 
