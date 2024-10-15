@@ -15,23 +15,23 @@ class Solution:
                     i+=1
 
                 i-=1
-                print(cur,cur_op)
+                # print(cur,cur_op)
                 if cur_op =="+":
                     res+=cur
                     prev = cur
-                    print(res,"SS")
+                    # print(res,"SS")
                     
                 elif cur_op =="-":
                     res-=cur
                     prev=-cur
                     
                 elif cur_op=="*":
-                    print(prev,cur,res)
+                    # print(prev,cur,res)
                     res=res-prev
                     res+=prev*cur
                     prev=prev*cur
                 elif cur_op=="/":
-                    print(prev,cur,res)
+                    # print(prev,cur,res)
                     res=res-prev
                     res+=int(prev/cur)
                     prev=int(prev/cur)
