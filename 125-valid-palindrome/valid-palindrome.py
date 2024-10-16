@@ -17,9 +17,12 @@ class Solution:
         l =0 
         r= len(a)-1
 
+       
         while l<=r:
+
             if a[l]!=a[r]:
                 return False
+
             l=l+1
             r=r-1
 
