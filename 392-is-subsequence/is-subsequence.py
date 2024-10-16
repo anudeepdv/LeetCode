@@ -1,16 +1,16 @@
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
         
+        i = 0
         j=0
-        n=len(s)
-        
-        for i in t:
-            if j==n:
-                return True
-            if i ==s[j]:
-                j=j+1
 
-        if j==n:
-            return True
+        for j in range(len(t)):
+            if i == len(s):
+                return True
+            if t[j]==s[i]:
+                i+=1
+
+        if i == len(s):
+                return True
 
         return False
