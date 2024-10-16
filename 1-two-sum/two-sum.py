@@ -4,9 +4,8 @@ class Solution:
         s={}
 
         for i,val in enumerate(nums):
-            if target - val in s:
-                
-                return [i,s[target - val]]
-            s[val]=i
 
-        
+            if target -val in s:
+                return [i,s[target-val]]
+            
+            s[val]=i
