@@ -6,6 +6,7 @@ class UnionFind:
     def find(self, n1):
         cur =n1
         while cur != self.parent[cur]:
+            self.parent[cur]=self.parent[self.parent[cur]]
             cur = self.parent[cur]
         return cur
 
