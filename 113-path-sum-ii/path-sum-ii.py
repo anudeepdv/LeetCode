@@ -17,14 +17,15 @@ class Solution:
                 l.append(node.val)
                 if sum(l)==targetSum:
                     res.append([i for i in l])
-
+                l.pop()
                 return
 
-           
+            l.append(node.val)
 
-            dfs(node.left,l+[node.val])
-            dfs(node.right,l+[node.val])
+            dfs(node.left,l)
+            dfs(node.right,l)
 
+            l.pop()
         dfs(root,[])
         return res
             
