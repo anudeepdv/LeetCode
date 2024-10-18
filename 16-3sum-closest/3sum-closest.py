@@ -3,20 +3,25 @@ class Solution:
         
         nums.sort()
         res=math.inf
-        for i in range(len(nums)-2):
+        
 
-            l=i+1
+        for  i in range(len(nums)-2):
+
+            l = i+1
             r=len(nums)-1
 
             while l<r:
-                val = nums[i]+nums[l]+nums[r]
+                # print(i,l,r)
+                tot = nums[i]+nums[l]+nums[r]
 
-                if val>target:
-                    r=r-1
+                if tot == target:
+                    return target
+                
+                if abs(tot-target) < abs(res-target):
+                    res=tot
+                if tot>target:
+                    r-=1
                 else:
-                    l=l+1
-
-                if abs(val-target)<abs(target-res):
-                    res = val
+                    l+=1
 
         return res
