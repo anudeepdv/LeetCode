@@ -5,7 +5,7 @@ class Solution:
         res=math.inf
         
 
-        for  i in range(len(nums)-2):
+        for  i in range(len(nums)):
 
             l = i+1
             r=len(nums)-1
