@@ -6,27 +6,26 @@
 #         self.right = right
 class Solution:
     def closestValue(self, root: Optional[TreeNode], target: float) -> int:
-        
 
-        res=float('inf')
-        val=[]
-        q=collections.deque()
-        q.append(root)
+        res=math.inf
+        mindis = math.inf
 
-        while q:
-            for _ in range(len(q)):
-                pop = q.popleft()
-                print(pop.val,abs(pop.val-target),target,res)
-                if abs(pop.val-target)<res:
-                    res=abs(pop.val-target)
-                    val=pop.val
-                if abs(pop.val-target)==res:
-                    val=min(pop.val,val)
+        def dfs(node):
+            nonlocal res
+            nonlocal mindis
+            if not node:
+                return
+            print(node.val)
+            if abs(node.val-target)<mindis:
+                res=node.val
+                mindis = abs(node.val-target)
+            if abs(node.val-target)==mindis:
+                res=min(node.val,res)
 
-                if pop.left:
-                    q.append(pop.left)
+            if target>node.val:
+                dfs(node.right)
+            else:
+                dfs(node.left)
 
-                if pop.right:
-                    q.append(pop.right)
-        print(val)
-        return val
+        dfs(root)
+        return res
