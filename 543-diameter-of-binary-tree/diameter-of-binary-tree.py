@@ -14,9 +14,9 @@ class Solution:
                 return -1
             
             l = dfs(node.left)
-            r = dfs(node.right)
-            
-            res=max(res,l+r+2)
+            r=dfs(node.right)
+
+            res=max(res,2+l+r)
 
             return 1+max(l,r)
 
