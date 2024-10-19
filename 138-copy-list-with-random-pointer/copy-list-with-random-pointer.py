@@ -10,34 +10,33 @@ class Node:
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         
-        cur= head
+        dummy= Node(-1)
         d={}
-        f=Node(-1)
-        prev=f
+        cur =head
+        pd = dummy
         while cur:
-            print(cur.val)
-            dup=Node(cur.val)
-            d[cur]=dup
+            
+            newnode=None
+            if cur in d:
+                newnode = d[cur]
+                pd.next=newnode
+            else:
+                newnode=Node(cur.val)
+                d[cur]=newnode
+                pd.next=newnode
+            pd=newnode
+            rand = cur.random
 
-            prev.next=dup
-            prev=dup
+            if rand in d:
+                randNoded = d[rand]
+                newnode.random=randNoded
+            elif rand is not None:
+                randNoded=Node(rand.val)
+                d[rand]=randNoded
+                newnode.random=randNoded
+            
             cur=cur.next
 
-        
-        
-        cur=head
-
-        for i in d:
-            dup= d[i]
-            rc = i.random
-            if rc is not None:
-                rd=d[rc]
-                dup.random=rd
-        return f.next
-
-
-
-
-            
+        return dummy.next
 
 
