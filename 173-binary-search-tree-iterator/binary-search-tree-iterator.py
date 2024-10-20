@@ -14,7 +14,7 @@ class BSTIterator:
         while cur:
             self.q.append(cur)
             cur =cur.left
-        print([i.val for i in self.q])
+        
 
     def next(self) -> int:
 
