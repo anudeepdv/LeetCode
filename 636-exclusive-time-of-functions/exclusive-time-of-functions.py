@@ -1,27 +1,32 @@
 class Solution:
     def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
         
-        s = collections.deque()
+        q=deque()
 
-        res = [0 for i in range(n)]
         prev = 0
 
-        for i in range(len(logs)):
-            f,status,time = logs[i].split(":")
-            time=int(time)
+        res= [0]*n
+        for  i in range(len(logs)):
+            func,state,time = logs[i].split(":")
+            func = int(func)
+            time = int(time)
+            print(time)
+            if state =="start":
+                if q:
+                    prevf = q[-1]
+                    res[prevf]+=time-prev
+                    print(res)
+                    prev=time
+                    q.append(func)
 
-            if status =="start":
-                if not s:
-                    s.append((int(f),time))
                 else:
-                    pf = s[-1][0]
-                    res[pf]=res[pf]+time-prev
-                    prev= time
-                    s.append((int(f),time))
-            else:
+                    q.append(func)
 
-                pf = s.pop()[0]
-                res[pf]=res[pf]+time-prev+1
-                prev = time+1
+            else:
+                prevf = q.pop()
+                res[prevf]+=time-prev+1
+                prev=time+1
+                print(res)
 
         return res
+
