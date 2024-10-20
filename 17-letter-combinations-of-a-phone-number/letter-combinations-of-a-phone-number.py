@@ -5,20 +5,18 @@ class Solution:
             "2" : "abc",
              "3" : "def", "4" : "ghi", "5" : "jkl", "6" : "mno", "7" : "pqrs", "8" : "tuv", "9" : "wxyz"
         }
-        n = len(digits)
-        if digits=="":
-            return []
+        
         res=[]
-        def dfs(i,cur):
-            if i ==n:
-                res.append(cur)
+        def dfs(i,r):
+            if i == len(digits):
+                if r!="":
+                    res.append(r)
                 return
             
-            vals = d[digits[i]]
+            val = digits[i]
 
-            for j in vals:
-                dfs(i+1,cur+j)
-        
+            for alpha  in d[val]:
+                dfs(i+1,r+alpha)
+
         dfs(0,"")
-
         return res
