@@ -8,25 +8,26 @@ class Solution:
 
         vis = set()
 
-        q= collections.deque()
 
         def dfs(x,y,vis):
 
-            if not ( x in range(rows) and y in range(cols) and grid[x][y]=="1"):
+            if x not in range(rows) or y not in range(cols):
+                return
+            if grid[x][y]=="0":
                 return
             if (x,y) in vis:
                 return
 
             vis.add((x,y))
-            for xi , xj in dirs:
-                dfs(x+xi, y+xj, vis)
 
+            for xi,yi in dirs:
+                dfs(x+xi,y+yi,vis)
 
         res=0
         for i in range(rows):
             for j in range(cols):
-
-                if grid[i][j] == "1" and (i,j) not in vis:
-                    dfs(i,j,vis)
+                if (i,j) not in vis and grid[i][j]=="1":
                     res+=1
+                    dfs(i,j,vis)
+
         return res
