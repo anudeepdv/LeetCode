@@ -22,7 +22,7 @@ class Solution:
                     besl = l
                     besr=r
                     res=r-l+1
-                    print(res,"res")
+                    # print(res,"res")
                 if s[l] in nmap:
                     hmap[s[l]]-=1
                     if hmap[s[l]]<nmap[s[l]]:
