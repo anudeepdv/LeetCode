@@ -7,13 +7,10 @@ class Solution:
         r=len(num)-1
 
         while l<=r:
-            if num[l] not in d:
+            if num[l] in d and num[r]==d[num[l]]:
+                l+=1
+                r-=1
+            else:
                 return False
-
-            if d[num[l]]!=num[r]:
-                return False
-
-            l=l+1
-            r=r-1
 
         return True
