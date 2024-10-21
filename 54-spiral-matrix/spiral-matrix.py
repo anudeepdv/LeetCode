@@ -6,28 +6,31 @@ class Solution:
 
         res=[]
         t=0
-        b=m-1
+        b=m
         l=0
-        r=n-1
+        r=n
 
         while len(res)<m*n:
-
-            for i in range(l,r+1):
+            print(res)
+            for i in range(l,r):
                 res.append(matrix[t][i])
+            t+=1
 
-            for i in range(t+1,b+1):
-                res.append(matrix[i][r])
-            if t!=b:
-                for i in range(r-1,l-1,-1):
-                    res.append(matrix[b][i])
-            if l!=r:
-                for i in range(b-1,t,-1):
-                    res.append(matrix[i][l])
-        
-            t=t+1
-            b=b-1
-            l=l+1
+            for i in range(t,b):
+                res.append(matrix[i][r-1])
             r=r-1
 
-        return res
+            print(l,r,t,b)
+            if  not (l<r and t<b):
+                break
+            for i in range(r-1,l-1,-1):
+                print(b,i)
+                res.append(matrix[b-1][i])
+            b-=1
 
+            for i in range(b-1,t-1,-1):
+                res.append(matrix[i][l])
+            l+=1
+
+        return res
+        
