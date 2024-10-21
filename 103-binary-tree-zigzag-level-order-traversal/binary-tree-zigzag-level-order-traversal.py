@@ -19,14 +19,11 @@ class Solution:
 
 
             if l:
-                temp = [i.val for i in q]
-                res.append(temp)
+                res.append([i.val for i  in q])
                 l=False
             else:
-                temp = [i.val for i in reversed(q)]
-                res.append(temp)
+                res.append([i.val for i  in reversed(q)])
                 l=True
-
             for _ in range(len(q)):
 
                 pop = q.popleft()
