@@ -14,8 +14,8 @@ class Solution:
         r=len(self.prefix)-1
 
         rand =  random.random()*self.total
+        
         while l<r:
-
             m = (l+r)//2
 
             if rand>self.prefix[m]:
@@ -24,3 +24,4 @@ class Solution:
                 r=m
 
         return l
+            
