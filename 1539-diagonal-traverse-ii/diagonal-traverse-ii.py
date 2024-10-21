@@ -1,6 +1,6 @@
 class Solution:
     def findDiagonalOrder(self, nums: List[List[int]]) -> List[int]:
-
+        
         d=collections.defaultdict(list)
         for i in range(len(nums)):
             for j in range(len(nums[i])):
@@ -13,6 +13,3 @@ class Solution:
             res.extend(reversed(d[i]))
         
         return res
-
-
-        
