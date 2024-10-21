@@ -1,28 +1,27 @@
 class Solution:
     def reorganizeString(self, s: str) -> str:
-
-        c= collections.Counter(s)
-
-        h=[(-cnt,ch) for ch,cnt in c.items()]
-
-        heapq.heapify(h)
-
+        
+        c = Counter(s)
+        
+        h = [(-val,ch) for ch,val in c.items()]
+        heapify(h)
+        print(h)
         prev=None
-        res=""
-        while h or prev:
-            if prev and not h:
+        res=''
+        while h or prev :
+            if not h:
                 return ""
-            i,j = heapq.heappop(h)
-            res=res+j
-            i=i+1
+            count,ch = heappop(h)
+            res+=ch
+
             if prev:
-                heapq.heappush(h,prev)
+                print(prev)
+                heappush(h, prev)
+            count+=1
+            if count!=0:
+                prev=(count,ch)
+            else:
                 prev=None
-            if i!=0:
-                prev=(i,j)
 
         return res
-
-
-
 
