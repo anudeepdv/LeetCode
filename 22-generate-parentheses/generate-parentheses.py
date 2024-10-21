@@ -2,21 +2,17 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         
         res=[]
-        s=[]
+        
 
-        def rec(l,r):
-
+        def rec(l,r,s):
             if l==r==n:
-                res.append("".join(s))
+                res.append(s)
 
             if l<n:
-                s.append('(')
-                rec(l+1,r)
-                s.pop()
+                rec(l+1,r,s+'(')
+            
             if r<l:
-                s.append(')')
-                rec(l,r+1)
-                s.pop()
+                rec(l,r+1,s+')')
 
-        rec(0,0)
+        rec(0,0,"")
         return res
