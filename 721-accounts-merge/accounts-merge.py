@@ -1,20 +1,18 @@
 class UnionFind:
     def __init__(self,n):
-        self.parent=[i for i in range(n)]
-        self.rank =[1]*n
+        self.parent = [i for i in range(n)]
+        self.rank = [1]*n
 
-    def find(self, n1):
-        cur =n1
-        while cur != self.parent[cur]:
-            self.parent[cur]=self.parent[self.parent[cur]]
-            cur = self.parent[cur]
+    def find(self,node):
+        cur = node
+        while cur!=self.parent[cur]:
+            cur=self.parent[cur]
         return cur
 
-    def union(self,n1,n2):
-        p1  = self.find(n1)
-        p2  = self.find(n2)
+    def union(self,node1,node2):
+        p1,p2 = self.find(node1),self.find(node2)
 
-        if p1==p2:
+        if p1 == p2:
             return False
 
         if self.rank[p1]>self.rank[p2]:
@@ -23,36 +21,35 @@ class UnionFind:
         else:
             self.rank[p2]+=self.rank[p1]
             self.parent[p1]=p2
-
+        
         return True
 
 class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
 
-        uf = UnionFind(len(accounts))
+        UF = UnionFind(len(accounts))
 
-        emailToId = {}
+        email_to_id = {}
 
-        for i,l in enumerate(accounts):
-            for email in l[1:]:
-                if email in emailToId:
-                    uf.union(i, emailToId[email])
+        for i in range(len(accounts)):
+            for email in accounts[i][1:]:
+                if email in email_to_id:
+                    UF.union(i, email_to_id[email])
                 else:
-                    emailToId[email] = i
+                    email_to_id[email]=i
 
         egroup = collections.defaultdict(list)
 
-        for email,i in emailToId.items():
-            leader = uf.find(i)
-            egroup[leader].append(email)
+        for email , index in email_to_id.items():
+            i = UF.find(index)
+            egroup[i].append(email)
 
         print(egroup)
 
-        res =[]
+        res=[]
 
-        for i , emails in egroup.items():
-            res.append([accounts[i][0]] + sorted(emails))
+        for i in egroup:
+            res.append([accounts[i][0]] + sorted(egroup[i]))
 
         return res
-
         
