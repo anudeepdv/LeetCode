@@ -15,13 +15,13 @@ class Solution:
 
         rand =  random.random()*self.total
         
-        while l<r:
+        while l<=r:
             m = (l+r)//2
 
             if rand>self.prefix[m]:
                 l=m+1
             else:
-                r=m
+                r=m-1
 
         return l
             
