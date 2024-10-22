@@ -13,19 +13,23 @@ class Solution:
         def dfs(node):
             nonlocal res
             nonlocal mindis
+            
             if not node:
                 return
-            print(node.val)
+
             if abs(node.val-target)<mindis:
                 res=node.val
                 mindis = abs(node.val-target)
-            if abs(node.val-target)==mindis:
-                res=min(node.val,res)
+            elif abs(node.val-target) == mindis:
+                res=min(res,node.val)
 
             if target>node.val:
                 dfs(node.right)
-            else:
+            elif target<node.val:
                 dfs(node.left)
+
+                
+
 
         dfs(root)
         return res
