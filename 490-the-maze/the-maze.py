@@ -11,27 +11,25 @@ class Solution:
         dir= [(0,1),(1,0),(-1,0),(0,-1)]
 
         while q:
+            popx, popy = q.popleft()
 
-            popx,popy = q.popleft()
-
-            if popx==destination[0] and popy==destination[1]:
+            if popx == destination[0] and popy==destination[1]:
                 return True
-            
-            for dx,dy in dir:
-                nx = popx+dx
-                ny = popy+dy
 
-                while nx in range(0,rows) and ny in range(0,cols) and maze[nx][ny]==0:
-                    nx=nx+dx
-                    ny=ny+dy
-                
 
-                nx=nx-dx
-                ny=ny-dy
+            for ix,iy in dir:
 
-                if (nx,ny) not in vis:
-                    vis.add((nx,ny))
+                nx,ny = popx+ix, popy+iy
+
+                while nx in range(rows) and ny in range(cols)  and maze[nx][ny]==0:
+                    nx=nx+ix
+                    ny=ny+iy
+
+                nx=nx-ix
+                ny=ny-iy
+
+                if (nx,ny) not in vis and maze[nx][ny]==0:
                     q.append((nx,ny))
-
+                    vis.add((nx,ny))
 
         return False
