@@ -2,33 +2,41 @@ class Solution:
     def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
         rows= len(maze)
         cols=len(maze[0])
-        q = collections.deque()
-        vis=set()
-
-        q.append((start[0],start[1]))
-        vis.add((start[0],start[1]))
+        
 
         dir= [(0,1),(1,0),(-1,0),(0,-1)]
 
-        while q:
-            popx, popy = q.popleft()
+        vis=set()
 
-            if popx == destination[0] and popy==destination[1]:
+        def dfs(x,y,vis):
+
+            if x not in range(rows) or y not in range(cols):
+                return False
+
+            if (x,y) in vis:
+                return False
+
+            if x==destination[0] and y==destination[1]:
                 return True
 
+            vis.add((x,y))
 
-            for ix,iy in dir:
+            ret=False
 
-                nx,ny = popx, popy
+            for i,j in dir:
 
-                while nx+ix in range(rows) and ny+iy in range(cols)  and maze[nx+ix][ny+iy]==0:
-                    nx=nx+ix
-                    ny=ny+iy
+                nx,ny = x,y
 
-    
+                while nx+i in range(rows) and ny+j in range(cols) and maze[nx+i][ny+j]==0:
+                    nx=nx+i
+                    ny=ny+j
+                
+                ret = ret or dfs(nx,ny,vis)
 
-                if (nx,ny) not in vis and maze[nx][ny]==0:
-                    q.append((nx,ny))
-                    vis.add((nx,ny))
+            return ret
 
-        return False
+        return dfs(start[0],start[1],vis)
+
+        
+
+                
