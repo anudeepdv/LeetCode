@@ -19,14 +19,13 @@ class Solution:
 
             for ix,iy in dir:
 
-                nx,ny = popx+ix, popy+iy
+                nx,ny = popx, popy
 
-                while nx in range(rows) and ny in range(cols)  and maze[nx][ny]==0:
+                while nx+ix in range(rows) and ny+iy in range(cols)  and maze[nx+ix][ny+iy]==0:
                     nx=nx+ix
                     ny=ny+iy
 
-                nx=nx-ix
-                ny=ny-iy
+    
 
                 if (nx,ny) not in vis and maze[nx][ny]==0:
                     q.append((nx,ny))
