@@ -3,24 +3,27 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-
-        l=0
-        r=len(nums)-1
-        i=0
+        
+        l =0 
+        m=0 
+        r= len(nums)-1
 
         def swap(a,b):
             temp=nums[a]
             nums[a]=nums[b]
             nums[b]=temp
-        while i<=r:
 
-            if nums[i]==2:
-                
-                swap(i,r)
-                r=r-1
-                i=i-1
-            elif nums[i]==0:
-                # nums[i],nums[l]=nums[l],nums[i]
-                swap(i,l)
-                l=l+1
-            i=i+1
+        while m<=r:
+
+            if nums[m]==2:
+                swap(m,r)
+                r-=1
+            elif nums[m]==0:
+                # nums[l],nums[m]=nums[m],nums[l]
+                swap(m,l)
+                l+=1
+                m+=1
+            else:
+                m+=1
+
+        
