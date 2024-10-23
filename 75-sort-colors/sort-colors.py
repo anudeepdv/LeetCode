@@ -8,19 +8,14 @@ class Solution:
         m=0 
         r= len(nums)-1
 
-        def swap(a,b):
-            temp=nums[a]
-            nums[a]=nums[b]
-            nums[b]=temp
-
+        
         while m<=r:
 
             if nums[m]==2:
-                swap(m,r)
+                nums[m],nums[r]=nums[r],nums[m]
                 r-=1
             elif nums[m]==0:
-                # nums[l],nums[m]=nums[m],nums[l]
-                swap(m,l)
+                nums[l],nums[m]=nums[m],nums[l]
                 l+=1
                 m+=1
             else:
