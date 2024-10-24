@@ -2,29 +2,28 @@ class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
         if not nums:
             return []
-        start=nums[0]
-        end=nums[0]
+        l=nums[0]
+        prev=l
         res=[]
-        for i in nums[1:]:
-            if i==end+1:
-            
-                end=i
-                
-            else:
-                if end==start:
-                    res.append(str(start))
+        for r in range(1,len(nums)):
+            #break
+            if prev+1!=nums[r]:
+                # print(l,prev)
+                if l==prev:
+                    res.append(str(l))
                 else:
-                    res.append(str(start)+'->'+str(end))
-                start=i
-                end=i
+                    res.append(str(l)+"->"+str(prev))
+                l=nums[r]
+                prev= l
+            else:
+                prev=nums[r]
 
-        if start==end:
-            if str(start) not in res:
-                res.append(str(start))
+        # print(l,prev)
+        if l==prev:
+            res.append(str(l))
         else:
-            if str(start)+'->'+str(end) not in res:
-                res.append(str(start)+'->'+str(end))
+            res.append(str(l)+"->"+str(prev))
+
         return res
 
-
-        
+            
