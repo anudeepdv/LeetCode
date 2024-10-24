@@ -1,19 +1,17 @@
 # The isBadVersion API is already defined for you.
 # def isBadVersion(version: int) -> bool:
 
+
 class Solution:
     def firstBadVersion(self, n: int) -> int:
-        
-        res=n
-        l=1
-        r=n
+        first, last = 1, n
 
-        while l<=r:
-            m=(l+r)//2
+        while first < last:
+            mid = first + (last - first) // 2
 
-            if isBadVersion(m):
-                res= m
-                r=m-1
+            if isBadVersion(mid):
+                last = mid  # The first bad version could be mid or before.
             else:
-                l=m+1
-        return res
+                first = mid + 1  # The first bad version must be after mid.
+
+        return first  # At the end, first will be the first bad version.
