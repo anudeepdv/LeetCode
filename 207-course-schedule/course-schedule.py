@@ -6,12 +6,13 @@ class Solution:
             adj[a].append(b)
 
         vis = set()
+        done=set()
         def dfs(node):
 
             if node in vis:
                 return False
 
-            if adj[node]==[]:
+            if node in done: 
                 return True
 
             vis.add(node)
@@ -22,7 +23,7 @@ class Solution:
 
             vis.remove(node)
 
-            adj[node]=[]
+            done.add(node)
             return True
 
         
