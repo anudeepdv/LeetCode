@@ -8,7 +8,7 @@ class Solution:
 
             res = max(res,min(height[l],height[r])*(r-l))
 
-            if height[l]<height[r]:
+            if height[l]<=height[r]:
                 l=l+1
             else:
                 r=r-1
