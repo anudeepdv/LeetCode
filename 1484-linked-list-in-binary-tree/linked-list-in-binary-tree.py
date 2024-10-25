@@ -15,16 +15,16 @@ class Solution:
         if not root:
             return False
 
-        def dfs(treenode,listnode):
-            if not listnode:
+        def dfs(root,head):
+            if not head:
                 return True
 
-            if not treenode:
+            if not root:
                 return False
 
-            if treenode.val!=listnode.val:
+            if root.val != head.val:
                 return False
 
-            return dfs(treenode.left, listnode.next) or dfs(treenode.right, listnode.next)
+            return dfs(root.left,head.next) or dfs(root.right,head.next)
 
         return dfs(root,head) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
