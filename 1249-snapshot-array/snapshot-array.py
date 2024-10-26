@@ -19,13 +19,18 @@ class SnapshotArray:
     def get(self, index: int, snap_id: int) -> int:
 
         targetList = self.map[index]
+        # print(targetList,snap_id)
         l=0
         r= len(targetList)-1
         res=0
         while l<=r:
 
             m = (l+r)//2
-            if targetList[m][1]<=snap_id:
+            # print(m)
+            if targetList[m][1]==snap_id:
+                res=targetList[m][0]
+                l=m+1
+            elif targetList[m][1]<snap_id:
                 res=targetList[m][0]
                 l=m+1
             else:
