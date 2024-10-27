@@ -14,7 +14,7 @@ class Solution:
         while q:
             x,y,r = q.popleft()
 
-            if (x,y)==(n-1,n-1):
+            if x==n-1 and y==n-1:
                 return r
 
             for i,j in dirs:
@@ -22,5 +22,5 @@ class Solution:
                 if nx in range(n) and ny in range(n) and grid[nx][ny]==0 and (nx,ny) not in vis:
                     q.append((nx,ny,r+1))
                     vis.add((nx,ny))
-        
+
         return -1
