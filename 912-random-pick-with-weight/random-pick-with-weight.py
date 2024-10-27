@@ -14,14 +14,14 @@ class Solution:
         r=len(self.prefix)-1
 
         rand =  random.random()*self.total
-        
+        res=l
         while l<=r:
             m = (l+r)//2
 
-            if rand>self.prefix[m]:
+            if rand > self.prefix[m]:
                 l=m+1
             else:
+                res=m
                 r=m-1
 
-        return l
-            
+        return res
