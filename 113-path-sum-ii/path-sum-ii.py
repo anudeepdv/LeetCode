@@ -14,12 +14,15 @@ class Solution:
 
             
             print(s)
-            if not node.left and not node.right and sum(s)+node.val==targetSum:
-                res.append(s+[node.val])
+            s.append(node.val)
+            if not node.left and not node.right and sum(s)==targetSum:
+                res.append([i for i in s])
+                s.pop()
                 return
 
-            dfs(node.left,s+[node.val])
-            dfs(node.right,s+[node.val])
+            dfs(node.left,s)
+            dfs(node.right,s)
+            s.pop()
 
             return
 
