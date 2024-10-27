@@ -1,20 +1,20 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        stack=collections.deque()
-        r=[]
         
-        for i,val in enumerate(s):
-            if val ==')' and stack:
-                stack.pop()
-            elif val== ')':
-                r.append(i)
-            elif val=='(':
-                stack.append(i)
-
-        res =''
+        q = collections.deque()
+        inv = collections.deque()
 
         for i,val in enumerate(s):
-            if i not in stack and i not in r:
-                res+=val
+            if q and val==')':
+                q.pop()
+            elif val==')':
+                inv.append(i)
+            elif val =='(':
+                q.append(i)
 
+        res=""
+        for i in range(len(s)):
+            if not(i in q or i in inv):
+                res+=s[i]
         return res
+
