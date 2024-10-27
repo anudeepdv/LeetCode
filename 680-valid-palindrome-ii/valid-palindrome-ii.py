@@ -1,6 +1,6 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        
+        #TIme - O(n) Space O(1)
         def valid(l,r):
 
             while l<=r:
