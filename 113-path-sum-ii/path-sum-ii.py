@@ -6,26 +6,22 @@
 #         self.right = right
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> List[List[int]]:
-        
-        res=[]
-        def dfs(node,l):
 
+        res=[]
+        def dfs(node,s):
             if not node:
                 return
-            print(l)
-            if node.left is None and node.right is None:
-                l.append(node.val)
-                if sum(l)==targetSum:
-                    res.append([i for i in l])
-                l.pop()
+
+            
+            print(s)
+            if not node.left and not node.right and sum(s)+node.val==targetSum:
+                res.append(s+[node.val])
                 return
 
-            l.append(node.val)
+            dfs(node.left,s+[node.val])
+            dfs(node.right,s+[node.val])
 
-            dfs(node.left,l)
-            dfs(node.right,l)
+            return
 
-            l.pop()
         dfs(root,[])
         return res
-            
