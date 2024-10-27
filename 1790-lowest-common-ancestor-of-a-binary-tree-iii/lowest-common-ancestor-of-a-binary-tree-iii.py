@@ -11,6 +11,7 @@ class Node:
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
         
+        #Time O(H) space O(1)
         pcopy = p 
         qcopy= q
 
