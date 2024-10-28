@@ -41,7 +41,7 @@ class Solution:
 
     
 
-        print(q)
+        # print(q)
         res=0
 
         for i in q:
