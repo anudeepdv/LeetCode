@@ -1,41 +1,21 @@
 class Solution:
-    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
-        
-        
-        i = 0
-        j=0
-        res=[]
+    def intervalIntersection(self, A: List[List[int]], B: List[List[int]]) -> List[List[int]]:
+        ans = []
+        i = j = 0
 
-        while i<len(firstList) and j<len(secondList):
-            sa,ea = firstList[i]
-            sb,eb = secondList[j]
+        while i < len(A) and j < len(B):
+            # Let's check if A[i] intersects B[j].
+            # lo - the startpoint of the intersection
+            # hi - the endpoint of the intersection
+            lo = max(A[i][0], B[j][0])
+            hi = min(A[i][1], B[j][1])
+            if lo <= hi:
+                ans.append([lo, hi])
 
-            if sa in range(sb,eb+1):
-                sn = sa
-                en=None
-
-                if ea<eb:
-                    en = ea
-                    i+=1
-                else:
-                    en =eb
-                    j+=1
-                res.append([sn,en])
-            elif sb in range(sa,ea+1):
-                sn =sb
-                en= None
-
-                if ea<eb:
-                    en = ea
-                    i+=1
-                else:
-                    en =eb
-                    j+=1
-                res.append([sn,en])
-
-            elif ea<eb:
-                i+=1
+            # Remove the interval with the smallest endpoint
+            if A[i][1] < B[j][1]:
+                i += 1
             else:
-                j+=1
+                j += 1
 
-        return res
+        return ans
