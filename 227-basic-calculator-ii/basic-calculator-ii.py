@@ -1,41 +1,53 @@
 class Solution:
     def calculate(self, s: str) -> int:
         
-        cur=prev=res=0
+        q = []
 
-        cur_op='+'
+        i = 0
 
-        i=0
+        cur = 0
+
+        sign = '+'
 
         while i<len(s):
-            if s[i].isnumeric():
-                while i<len(s) and s[i].isnumeric():
+            if s[i].isdigit():
+                while i<len(s) and s[i].isdigit():
                     cur=cur*10+int(s[i])
                     i+=1
-                i=i-1
+                i-=1
+            if s[i] in "+-/*" or i==len(s)-1:
+                if sign == '+':
+                    q.append(cur)
+                    cur=0
+                    sign=1
 
-                if cur_op =="+":
-                    res=res+cur
-                    prev=cur
+                elif sign=='-':
+                    q.append(-cur)
+                    cur=0
+                    sign=-1
 
-                elif cur_op=='-':
-                    res=res-cur
-                    prev=-cur
-                elif cur_op =="*":
-                    res=res-prev
-                    res+=prev*cur
-                    prev = prev*cur
-                elif cur_op =="/":
-                    res=res-prev
-                    res+=int(prev/cur)
-                    prev = int(prev/cur)
+                elif sign=='*':
+                    res=cur*q.pop() 
+                    q.append(res)
+                    cur=0
 
-                cur=0
+                elif sign=='/':
+                    res=int(q.pop()/cur)
+                    q.append(res)
+                    cur=0
 
-            elif s[i]!=' ':
-                cur_op=s[i]
-
+                sign=s[i]
             i+=1
 
+    
+
+        print(q)
+        res=0
+
+        for i in q:
+            res+=i
+
         return res
+
+
 
