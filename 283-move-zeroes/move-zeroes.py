@@ -4,13 +4,8 @@ class Solution:
         Do not return anything, modify nums in-place instead.
         """
 
-        l=0
-
-        for r in range(len(nums)):
-            if nums[r]:
-                nums[l]=nums[r]
-                l+=1
-
-        while l<    len(nums):
-            nums[l]=0
-            l+=1
+        k = 0 
+        for l in range(len(nums)):
+            if nums[l]:
+                nums[l],nums[k]= nums[k],nums[l]
+                k+=1
