@@ -1,42 +1,47 @@
 class Solution:
     def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
         
-        rows= len(mat)
-        cols=len(mat[0])
-        res= []
-        up=True
-        r=c=0
-        while len(res)< rows*cols:
+        res = []
+
+        up =True
+        m=len(mat)
+        n=len(mat[0])
+        i=0
+        j=0
+        while len(res)<n*m:
 
             if up:
-
-                while r>=0 and c<cols:
-                    res.append(mat[r][c])
-                    r-=1
-                    c+=1
                 
-                if c==cols:
-                    r+=2
-                    c-=1
+                while i in range(m) and j in range(n):
+                    res.append(mat[i][j])
+                    i-=1
+                    j+=1
+                
+                if j==n:
+                    i+=2
+                    j-=1
                 else:
-                    r+=1
-
+                    i+=1
+                
                 up=False
 
             else:
+                while i in range(m) and j in range(n):
+                    res.append(mat[i][j])
+                    i+=1
+                    j-=1
 
-                while r<rows and c>=0:
-                    res.append(mat[r][c])
-                    r+=1
-                    c-=1
-                if r==rows:
-                    r-=1
-                    c+=2
-
+                if i==m:
+                    i-=1
+                    j+=2
                 else:
-                    c+=1
+                    j+=1
 
                 up=True
 
+
         return res
+
+        
+
 
