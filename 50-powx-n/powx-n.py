@@ -1,5 +1,5 @@
 class Solution:
-    @cache
+    
     def myPow(self, x: float, n: int) -> float:
         
 
