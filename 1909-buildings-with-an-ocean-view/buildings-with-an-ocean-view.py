@@ -3,7 +3,8 @@ class Solution:
         curHtg=-1
         res=collections.deque([])
         for i in range(len(heights)-1,-1,-1):
-            if curHtg<heights[i]:
-                curHtg=heights[i]
+            if heights[i]>curHtg:
                 res.appendleft(i)
+                curHtg= heights[i]
+
         return list(res)
