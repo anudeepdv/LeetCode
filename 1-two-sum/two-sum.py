@@ -3,7 +3,9 @@ class Solution:
         
         d= {}
 
-        for i,val in enumerate(nums):
-            if target-val in d:
-                return [i,d[target-val]]
+        for i, val in enumerate(nums):
+            if target - val in d:
+                return [i,d[target - val]]
             d[val]=i
+
+    
