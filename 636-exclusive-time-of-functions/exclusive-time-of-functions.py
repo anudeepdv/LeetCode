@@ -10,23 +10,20 @@ class Solution:
             func,state,time = logs[i].split(":")
             func = int(func)
             time = int(time)
-            print(time)
-            if state =="start":
+            if state=="start":
                 if q:
-                    prevf = q[-1]
-                    res[prevf]+=time-prev
-                    print(res)
+                    pf = q[-1]
+                    res[pf]+=time-prev
                     prev=time
                     q.append(func)
-
                 else:
                     q.append(func)
+                    
 
-            else:
-                prevf = q.pop()
-                res[prevf]+=time-prev+1
+            elif state=="end":
+                
+                pf = q.pop()
+                res[pf]+=time-prev+1
                 prev=time+1
-                print(res)
 
         return res
-
