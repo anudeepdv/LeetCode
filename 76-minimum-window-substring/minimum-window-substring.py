@@ -10,27 +10,28 @@ class Solution:
 
         res=math.inf
         besl , besr = 0,0
-        for  r in range(len(s)):
+
+        for r in range(len(s)):
+
             if s[r] in nmap:
                 hmap[s[r]]+=1
                 if hmap[s[r]]==nmap[s[r]]:
                     have+=1
-            
+
             while have==need:
-                # print(hmap,nmap)
-                if r-l+1<res:
-                    besl = l
+
+                if r-l-1<res:
+                    res=r-l-1
+                    besl=l
                     besr=r
-                    res=r-l+1
-                    # print(res,"res")
+                
                 if s[l] in nmap:
                     hmap[s[l]]-=1
                     if hmap[s[l]]<nmap[s[l]]:
                         have-=1
-                        # print("Have",have)
 
                 l+=1
 
-        return s[besl:besr+1] if res!=math.inf else ""
-                    
-                
+        return "" if res==math.inf else s[besl:besr+1]
+
+        
