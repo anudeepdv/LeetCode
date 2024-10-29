@@ -11,32 +11,31 @@ class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
         
         if not root:
-            return
-        first =None
-        last=None
+            return 
+
+        self.first = None
+        self.last = None
+
         def inorder(node):
-            nonlocal first
-            nonlocal last
             if not node:
                 return
-
+            
             inorder(node.left)
 
-            if not last:
-                first = node
+            if not self.last:
+                self.first = node
             else:
-                node.left=last
-                last.right=node
+                node.left=self.last
+                self.last.right = node
 
-            last=node
+            self.last=node
 
             inorder(node.right)
 
         inorder(root)
 
-        first.left= last
-        last.right =first
+        self.first.left=self.last
+        self.last.right = self.first
 
-        return first
-
+        return self.first
 
