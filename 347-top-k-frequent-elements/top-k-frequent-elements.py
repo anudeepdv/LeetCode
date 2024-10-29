@@ -4,14 +4,15 @@ class Solution:
         c = Counter(nums)
 
         d = [[] for i in range(len(nums)+1)]
-        print(c,d)
-        for key,val in c.items():
-            d[val].append(key)
+        
+        for key,count in c.items():
+            d[count].append(key)
 
-        res= []
+        res=[]
         for i in range(len(d)-1,-1,-1):
-            for val in d[i]:
-                res.append(val)
+
+            for key in d[i]:
+                res.append(key)
                 k-=1
-                if k==0:
+                if k ==0:
                     return res
