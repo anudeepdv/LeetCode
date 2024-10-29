@@ -9,12 +9,12 @@ class Solution:
             if n==1:
                 return x
 
-            a = help(x, n//2)
+            a= help(x,n//2)
 
             if n%2==1:
                 return a*a*x
-            else:
-                return a*a
+            return a*a
+
 
         a = help(x, abs(n))
 
