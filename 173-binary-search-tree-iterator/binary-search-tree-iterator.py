@@ -7,34 +7,25 @@
 class BSTIterator:
 
     def __init__(self, root: Optional[TreeNode]):
-        self.q =deque()
+        self.s = deque()
 
-        cur = root
-        
+        cur =root
         while cur:
-            self.q.append(cur)
+            self.s.append(cur)
             cur=cur.left
-
-
-        
 
     def next(self) -> int:
-        node = self.q.pop()
+        ret = self.s.pop()
 
-        cur = node.right
+        cur = ret.right
+
         while cur:
-            self.q.append(cur)
-            cur=cur.left
-
-        return node.val
-
-
-
-        
+            self.s.append(cur)
+            cur=cur.left   
+        return ret.val
 
     def hasNext(self) -> bool:
-
-        return len(self.q)>0
+        return True if len(self.s)>0 else False
         
 
 
