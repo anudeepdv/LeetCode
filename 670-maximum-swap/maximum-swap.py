@@ -3,37 +3,32 @@ class Solution:
         
         q = deque()
 
-        cur = num
+        while num:
+            q.appendleft(num%10)
+            num=num//10
 
-        while cur!=0:
-            q.appendleft(cur%10)
-            cur=cur//10
+        maxseen = -1
+        maxseeni = -1
 
-        
-        i = len(q)-1
-        maxseen = -1 
-        maxseeni=-1
 
-        while i>=0:
-            cur = q[i]
-            if cur>maxseen:
-                maxseen = cur
-                maxseeni = i
-            q[i]=(cur,maxseen,maxseeni)
-            i-=1
+
+        for i in range(len(q)-1,-1,-1):
+            if q[i]>maxseen:
+                maxseen = q[i]
+                maxseeni =i 
+
+            q[i]=(q[i],maxseen,maxseeni)
 
         print(q)
-        
+
         for i in range(len(q)):
             if q[i][1]>q[i][0]:
                 q[i],q[q[i][2]]=q[q[i][2]],q[i]
                 break
+        cur=0
+        print(q)
+        for i in range(len(q)):
+            cur=cur*10 + q[i][0]
 
-        
+        return cur
 
-
-        res=0 
-        for i in q:
-            res=res*10+i[0]
-
-        return res
