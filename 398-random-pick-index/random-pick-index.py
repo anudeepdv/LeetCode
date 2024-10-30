@@ -8,11 +8,8 @@ class Solution:
             self.d[val].append(i)
         
     def pick(self, target: int) -> int:
-        targetList = self.d[target]
-        l=0
-        r=len(targetList)-1
-
-        return self.d[target][random.randint(l, r)]
+  
+        return random.choice(self.d[target])
 
         
 
