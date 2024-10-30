@@ -1,27 +1,29 @@
 class Solution:
     def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
         
-        rows= len(matrix)
+        rows = len(matrix)
         cols = len(matrix[0])
         def check(r,c):
 
             val = matrix[r][c]
 
             while r in range(rows) and c in range(cols):
-                if val != matrix[r][c]:
+
+                if matrix[r][c]!=val:
                     return False
+
                 r+=1
                 c+=1
 
             return True
 
         
-        for c in range(cols):
-            if not check(0,c):
+        for i in range(0,cols):
+            if not check(0,i):
                 return False
 
-        for r in range(1,rows):
-            if not check(r,0):
+        for i in range(1,rows):
+            if not check(i,0):
                 return False
 
         return True
