@@ -8,20 +8,16 @@ class Solution:
         print(h)
         prev=None
         res=''
-        while h or prev :
+        
+        while h or prev:
             if not h:
                 return ""
-            count,ch = heappop(h)
-            res+=ch
-
+            c,ch = heappop(h)
             if prev:
-                print(prev)
                 heappush(h, prev)
-            count+=1
-            if count!=0:
-                prev=(count,ch)
-            else:
                 prev=None
-
+            res+=ch
+            c+=1
+            if c!=0:
+                prev=(c,ch)
         return res
-
