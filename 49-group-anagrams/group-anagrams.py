@@ -1,17 +1,15 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         
-        s=collections.defaultdict(list)
+        print(ord('z'),122-97)
 
-        for i in strs:
+        d=collections.defaultdict(list)
+        for s in strs:
+            val = [0]*26
+            for  i in s:
+                val[ord(i)-97]+=1
+            
+            d[tuple(val)].append(s)
 
-            n=[0 for i in range(26)]
-            for ch in i:
-                n[ord(ch)-97]+=1
-            s[tuple(n)].append(i)
-
-        return s.values()
-        
-
-
-        
+        print(d.values())
+        return list(d.values() )           
