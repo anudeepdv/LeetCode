@@ -1,7 +1,7 @@
 class UnionFind:
     def __init__(self,n):
-        self.parent = [i for i in range(n)]
-        self.rank = [1]*n
+        self.parent=[i for i in range(n)]
+        self.rank = [1 for i in range(n)]
 
     def find(self,node):
         cur = node
@@ -9,8 +9,9 @@ class UnionFind:
             cur=self.parent[cur]
         return cur
 
-    def union(self,node1,node2):
-        p1,p2 = self.find(node1),self.find(node2)
+    def union(self,n1,n2):
+        p1 = self.find(n1)
+        p2 = self.find(n2)
 
         if p1 == p2:
             return False
@@ -26,30 +27,27 @@ class UnionFind:
 
 class Solution:
     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
-
+        
         UF = UnionFind(len(accounts))
-
         email_to_id = {}
 
-        for i in range(len(accounts)):
-            for email in accounts[i][1:]:
+        for i,l in enumerate(accounts):
+            for email in l[1:]:
                 if email in email_to_id:
                     UF.union(i, email_to_id[email])
                 else:
                     email_to_id[email]=i
 
-        egroup = collections.defaultdict(list)
+        id_to_emails = collections.defaultdict(list)
 
-        for email , index in email_to_id.items():
-            i = UF.find(index)
-            egroup[i].append(email)
+        for email in email_to_id:
+            id = UF.find(email_to_id[email])
+            id_to_emails[id].append(email)
+        print(id_to_emails)
+        res =[]
 
-        print(egroup)
-
-        res=[]
-
-        for i in egroup:
-            res.append([accounts[i][0]] + sorted(egroup[i]))
+        for id in id_to_emails:
+            res.append([accounts[id][0]]+sorted(id_to_emails[id]))
 
         return res
-        
+
