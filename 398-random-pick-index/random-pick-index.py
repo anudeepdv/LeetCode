@@ -1,19 +1,20 @@
 class Solution:
 
     def __init__(self, nums: List[int]):
-        self.map = collections.defaultdict(list)
-        for i,val in enumerate(nums):
-            self.map[val].append(i)
 
+        self.d=collections.defaultdict(list)
 
+        for i ,val in enumerate(nums):
+            self.d[val].append(i)
+        
     def pick(self, target: int) -> int:
-        l = len(self.map[target])
+        targetList = self.d[target]
+        l=0
+        r=len(targetList)-1
 
-        rand = randint(0, l-1)
+        return self.d[target][random.randint(l, r)]
 
-        print(l,rand)
-
-        return self.map[target][rand]
+        
 
 
 # Your Solution object will be instantiated and called as such:
