@@ -7,7 +7,15 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         
-        if not root:
-            return 0
+        def dfs(node):
+            if not node:
+                return 0
 
-        return 1+max(self.maxDepth(root.left),self.maxDepth(root.right))
+            l = dfs(node.left)
+            r = dfs(node.right)
+
+            return 1 + max(l,r)
+
+        return dfs(root)
+
+         
