@@ -1,18 +1,17 @@
 class Solution:
     def canArrange(self, arr: List[int], k: int) -> bool:
         
-        c=Counter([i%k for i in arr])
+        l = [i%k for i in arr]
+        c = Counter(l)
+        for a in l:
+            b = (k-a)%k
 
-        for x in c:
-
-            other_key = (k-x)%k
-
-            if other_key!=x:
-                if c[other_key]!=c[x]:
+            if a==b:
+                if c[a]%2==1:
                     return False
-
             else:
-                if c[other_key]%2!=0:
+                if c[a]!=c[b]:
                     return False
+
 
         return True
