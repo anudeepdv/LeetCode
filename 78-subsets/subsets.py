@@ -5,7 +5,7 @@ class Solution:
         def dfs(i,l):
             
             if i ==len(nums):
-                res.append([k for k in l])
+                res.append(l)
                 return
 
             dfs(i+1,l+[nums[i]])
