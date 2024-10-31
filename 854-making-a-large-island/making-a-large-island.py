@@ -7,23 +7,24 @@ class Solution:
         island_id=-1
         dir=[(1,0),(0,1),(-1,0),(0,-1)]
         area_map = collections.defaultdict(int)
-        def dfs(x,y):
+        def dfs(x,y,vis):
 
 
             if x not in range(rows) or y not in range(cols):
                 return
 
-            
+            if (x,y) in vis:
+                return
 
             if grid[x][y]!=1:
                 return
             
-            
+            vis.add((x,y))
             grid[x][y]=island_id
             area_map[island_id]+=1
 
             for nx,ny in dir:
-                dfs(x+nx,y+ny)
+                dfs(x+nx,y+ny,vis)
 
 
 
@@ -31,7 +32,7 @@ class Solution:
             for c in range(cols):
 
                 if grid[r][c]==1:
-                    dfs(r,c)
+                    dfs(r,c,set())
                     island_id-=1
         max_area=0
         for r in range(rows):
