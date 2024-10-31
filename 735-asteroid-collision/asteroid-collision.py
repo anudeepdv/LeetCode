@@ -1,6 +1,6 @@
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
-        s=deque()
+        s=[]
         
         for a in asteroids:
 
@@ -19,4 +19,4 @@ class Solution:
                 s.append(a)
 
 
-        return list(s)
+        return s
