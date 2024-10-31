@@ -1,33 +1,32 @@
 class RandomizedSet:
 
     def __init__(self):
-        self.hashmap={}
-        self.l=[]
+        self.l = deque()
+        self.map = {}
         
-
     def insert(self, val: int) -> bool:
-
-        if val in self.hashmap:
+        if val in self.map:
             return False
 
-        k = len(self.l)
-        self.hashmap[val]=k
-
+        self.map[val]=len(self.l)
         self.l.append(val)
 
         return True
         
 
     def remove(self, val: int) -> bool:
-        if val not in self.hashmap:
+        if val not in self.map:
             return False
-        ind = self.hashmap[val]
-        pop = self.l[-1]
-        self.l[ind]=pop
+
+        index =self.map[val]
+        lastelement = self.l[-1]
+        self.l[index]=lastelement
+        self.map[lastelement]= index
         self.l.pop()
-        self.hashmap[pop]=ind
-        del self.hashmap[val]  
-        return True      
+        del self.map[val]
+        return True
+
+        
 
     def getRandom(self) -> int:
         return random.choice(self.l)
