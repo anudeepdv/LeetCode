@@ -1,6 +1,6 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        
+        #Time - O(N) Space - O(MAX Num * str )
         q =[]
 
         for i in s:
