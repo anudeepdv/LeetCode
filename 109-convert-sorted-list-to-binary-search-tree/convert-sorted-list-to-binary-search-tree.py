@@ -31,21 +31,21 @@ class Solution:
         # l and r represent the start and end of the given array
         def convertListToBST(l: int, r: int) -> TreeNode:
 
-            # Invalid case
-            if l > r:
+            if l>r:
                 return None
+            
+            m =(l+r)//2
 
-            # Middle element forms the root.
-            mid = (l + r) // 2
-            node = TreeNode(values[mid])
+            node = TreeNode(values[m])
 
-            # Base case for when there is only one element left in the array
-            if l == r:
+            if l==r:
                 return node
 
-            # Recursively form BST on the two halves
-            node.left = convertListToBST(l, mid - 1)
-            node.right = convertListToBST(mid + 1, r)
+            node.left = convertListToBST(l,m-1)
+            node.right = convertListToBST(m+1,r)
+
             return node
+
+            
 
         return convertListToBST(0, len(values) - 1)
