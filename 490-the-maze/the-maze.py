@@ -9,23 +9,21 @@ class Solution:
         vis=set()
 
         def dfs(x,y,vis):
-
             if x not in range(rows) or y not in range(cols):
                 return False
 
-            if (x,y) in vis:
+            if (x,y) in vis or maze[x][y]==1:
                 return False
 
-            if x==destination[0] and y==destination[1]:
+            if (x,y) == (destination[0],destination[1]):
                 return True
 
             vis.add((x,y))
+            
+            ret = False
+            for i , j in dir:
 
-            ret=False
-
-            for i,j in dir:
-
-                nx,ny = x,y
+                nx,ny =x,y
 
                 while nx+i in range(rows) and ny+j in range(cols) and maze[nx+i][ny+j]==0:
                     nx=nx+i
@@ -34,6 +32,10 @@ class Solution:
                 ret = ret or dfs(nx,ny,vis)
 
             return ret
+
+
+
+            
 
         return dfs(start[0],start[1],vis)
 
