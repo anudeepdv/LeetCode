@@ -7,21 +7,24 @@
 class Solution:
     def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
         
+        #Time complex =O(N) Space O(N)
         q= deque()
         q.append(root)
 
-        nullNode= False
+        nullnode= False
+
         while q:
+
             node = q.popleft()
 
             if not node:
-                nullNode= True
+                nullnode=True
             else:
-                if nullNode:
+                if nullnode:
                     return False
-
+                
                 q.append(node.left)
                 q.append(node.right)
 
         return True
-
+           
