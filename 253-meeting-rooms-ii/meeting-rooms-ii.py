@@ -1,27 +1,29 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-
+        
         start = []
-        end = []
-        for s,e in intervals:
+        end = [ ]
 
-            start.append(s)
-            end.append(e)
+        for a,b in intervals:
+            start.append(a)
+            end.append(b)
+
 
         start.sort()
         end.sort()
 
-        i = 0 
-        j = 0 
+        i = 0
+        j=0
         res=0
         best = 0
-        while i<len(start):
+        while i<len(start) and j<len(end):
             if start[i]<end[j]:
-                res+=1
                 i+=1
+                res+=1
             else:
-                res-=1
                 j+=1
-            best = max(res,best)
+                res-=1
+            best = max(best,res)
+
         return best
 
