@@ -12,25 +12,27 @@ class Solution:
         delete=set(to_delete)
 
         def dfs(node):
-
             if not node:
-                return
+                return None
 
-            res=node
+            res= node
+
+            node.left = dfs(node.left)
+            node.right = dfs(node.right)
+
+
             if node.val in delete:
-                res=None
                 output.discard(node)
+
                 if node.left:
                     output.add(node.left)
                 if node.right:
                     output.add(node.right)
 
+                res=None
 
-            node.left = dfs(node.left)
-            node.right=dfs(node.right)
-
+            
             return res
-
 
         dfs(root)
 
