@@ -13,20 +13,23 @@ class Solution:
 
         if not root:
             return
-        cur = root
-        nxt = cur.left
+        
+        q = deque()
+        q.append(root)
 
-        while cur and nxt:
+        while q:
 
-            if cur.right:
-                cur.left.next = cur.right
+            dummy = Node(-1)
 
-            if cur.next:
-                cur.right.next = cur.next.left
-                cur=cur.next
-            else:
-            
-                cur=nxt
-                nxt=cur.left    
+            for _ in range(len(q)):
+
+                node = q.popleft()
+                dummy.next  =node
+                dummy = node
+
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
 
         return root
