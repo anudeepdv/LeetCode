@@ -4,21 +4,21 @@ class Solution:
         l =1
         r= max(piles)
 
-        res=math.inf
+        res = r
 
-        while l<=r:
-
+        while(l<=r):
+            
             m = (l+r)//2
-            time=0
-            for i in piles:
-                time = time+math.ceil(i/m)
 
-            if time >h:
-                l=m+1
-            else:
+            hours=0
+            for i in piles:
+                hours =hours+ math.ceil(i/m)
+
+            if hours<=h:
                 res=min(res,m)
                 r=m-1
 
-        return res
+            else:
+                l=m+1
 
-            
+        return res
