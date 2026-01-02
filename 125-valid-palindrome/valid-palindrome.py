@@ -1,11 +1,6 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        print(ord('a'))
-        print(ord('z'))
-        print(ord('A'))
-        print(ord('Z'))
-        print(ord("0"))
-        print(ord("9"))
+        
 
        
         res = ''
