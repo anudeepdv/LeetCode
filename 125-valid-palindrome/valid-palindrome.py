@@ -3,15 +3,18 @@ class Solution:
         
 
        
-        res = ''
-        for v in s:
-            if ord(v) in range(97,123) or  ord(v) in range(65,91) or  ord(v) in range(48,58):
-                res=res+v.lower()
-        l,r=0,len(res)-1
-        print(res)
-        while l<=r:
-            if res[l]!=res[r]:
-                return False 
-            l+=1
-            r-=1
-        return True      
+        i =0 
+        j = len(s)-1
+
+        while i<=j:
+
+            while i<=j and not s[i].isalnum():
+                i+=1
+            while i<=j and not s[j].isalnum():
+                j-=1
+            if i<=j and s[i].lower()!=s[j].lower():
+                return False
+            if i<=j:
+                i+=1
+                j-=1
+        return True
