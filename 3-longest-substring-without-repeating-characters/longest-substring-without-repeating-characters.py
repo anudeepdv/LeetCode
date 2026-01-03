@@ -1,25 +1,17 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        l=0
+        curset = set()
+        l =0 
+        r= 0
+        res=0
+        while r< len(s):
+            while s[r] in curset:
+                curset.remove(s[l])
+                l+=1
+            curset.add(s[r])
+            r+=1
+            res=max(res,r-l)
+        return res
+
+
         
-        maxy=0
-
-        hashmap=set()
-
-        for r in range(len(s)):
-          
-            if s[r] not in hashmap:
-                hashmap.add(s[r])
-                maxy=max(maxy,r-l+1)
-            
-            else:
-                while s[r] in hashmap:
-                  
-                    hashmap.remove(s[l])
-                    l=l+1
-                hashmap.add(s[r])
-                maxy=max(maxy,r-l+1)
-             
-             
-
-        return maxy
