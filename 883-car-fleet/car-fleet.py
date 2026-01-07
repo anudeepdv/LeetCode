@@ -1,25 +1,13 @@
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
 
-        res = [target - i for i in position]
-
-        z = list(zip(res,speed))
-
-        z.sort(key = lambda x:x[0])
-
-        r =[]
-
-        for i in z:
-            rem = i[0]/i[1]
-
-            if r:
-                if rem <= r[-1]:
-                    continue
-                else:
-                    r.append(rem) 
-            else:
-                r.append(rem)
-
-        return len(r)
-
-        
+        res = [[p,s] for p,s in zip(position,speed)]
+        print(res)
+        s=collections.deque()
+        res.sort(key=lambda x:x[0])
+        res.reverse()
+        for pos,t in res:
+            s.append((target-pos)/t)
+            if len(s)>=2 and s[-1]<=s[-2]:
+                s.pop()
+        return len(s)
