@@ -20,7 +20,6 @@ class Solution:
             node = stack.pop()
             
             n+=1
-            print(node.val,n,k)
             if n==k:
                 return node.val
             if node.right:
