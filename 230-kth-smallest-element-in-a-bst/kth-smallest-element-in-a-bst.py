@@ -10,16 +10,21 @@ class Solution:
         stack = []
          
         cur = root
+
         n=0
         while cur or stack:
-            
+
             while cur:
                 stack.append(cur)
                 cur=cur.left
-
-            cur = stack.pop()
+            node = stack.pop()
+            
             n+=1
+            print(node.val,n,k)
             if n==k:
-                return cur.val
-            print(cur.val)
-            cur=cur.right
+                return node.val
+            if node.right:
+                cur=node.right
+
+            
+
